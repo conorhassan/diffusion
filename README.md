@@ -2,11 +2,10 @@
 
 ![Denoising Process](examples/minimal.gif)
 
-A modular implementation of diffusion models using JAX, focusing on score-based generative modeling and building towards implementing various diffusion papers.
-
+An implementation of diffusion models in JAX, building towards implementing various diffusion-related papers.
 ## Overview
 
-This repository provides a clean, modular implementation of diffusion models in JAX. The goal is to create reusable components for implementing and experimenting with different diffusion model variants from the literature.
+This repository provides a clean, modular implementation of diffusion models in JAX [TODO]. The goal is to create reusable components for implementing and experimenting with different diffusion model variants from the literature.
 
 ### What are Diffusion Models?
 
@@ -15,25 +14,19 @@ Diffusion models are a class of generative models that learn to generate data by
 1. **Denoising Diffusion Probabilistic Models (DDPMs)**: Learn to reverse a fixed forward noising process
 2. **Score-Based Generative Models**: Learn the score function (gradient of log density) at various noise levels
 
-These perspectives are mathematically equivalent and connected through Tweedie's formula.
+These perspectives are mathematically equivalent and connected through Tweedie's formula [TODO: show the basics].
 
 ## Current Implementation
 
-### Denoising Score Matching (DSM)
+### Denoising Score Matching
 
-We've implemented denoising score matching, which trains a neural network to predict the score function:
+We have currently implemented denoising score matching, which trains a neural network to predict the score function:
 
 ```
 ∇_x log p(x) ≈ -1/σ² (x - x_clean)
 ```
 
-Key features:
-- **Multi-scale training**: Learns scores at multiple noise levels (σ)
-- **Weighted loss tracking**: Normalizes losses across different scales
-- **Proper architecture**: Sinusoidal time embeddings, correct initialization
-- **Annealed Langevin dynamics**: For sample generation
-
-See `examples/train_score_matching.py` for a complete working example on the two-moons dataset.
+See `examples/train_score_matching.py` for an example on the two-moons dataset.
 
 ## Project Structure
 
@@ -53,8 +46,6 @@ diffusion/
 ```
 
 ## Installation
-
-Using [uv](https://github.com/astral-sh/uv) for package management:
 
 ```bash
 # Clone the repository
@@ -87,12 +78,12 @@ python train_score_matching.py --steps 30000 --lr 0.001
 
 2. **SDE/ODE Framework**
    - Integrate with diffrax for SDE/ODE solving
-   - Implement VP-SDE, VE-SDE, and sub-VP variants
-   - Add predictor-corrector sampling
+   - Implement VP-SDE, VE-SDE, and sub-VP variants (what are these?)
+   - Add predictor-corrector sampling (what are these?)
 
 3. **Better Architectures**
    - U-Net implementation with attention
-   - Time-dependent layer normalization
+   - Time-dependent layer normalization (see Karras paper I guess)
    - Self-attention at multiple resolutions
 
 4. **Conditional Generation**
@@ -109,21 +100,11 @@ python train_score_matching.py --steps 30000 --lr 0.001
 - **ControlNet**: Adding spatial control to diffusion models
 - **DreamBooth**: Few-shot personalization
 
-### Research Directions
-
-- **Improved Sampling**: DPM-Solver, PNDM, and other fast samplers
-- **Distillation**: Progressive distillation for few-step generation
-- **Score-Based MCMCs**: Using learned scores for MCMC sampling
-- **Inverse Problems**: Image restoration, super-resolution
-- **Multi-modal Diffusion**: Joint image-text generation
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit pull requests or open issues for:
-- Bug fixes
-- New model implementations
-- Additional sampling algorithms
-- Documentation improvements
+**The things that I actually would like to do:** 
+- diffusion transformers
+- SMC sampling/diffusion paper (oxford group june 2025)
+- DDIM
+- Speculztive decoding with diffusion models
 
 ## References
 
