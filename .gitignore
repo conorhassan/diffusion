@@ -83,6 +83,9 @@ outputs/
 figures/
 plots/
 
+# Exception for minimal.gif banner
+!examples/minimal.gif
+
 # Temporary files
 *.tmp
 *.bak

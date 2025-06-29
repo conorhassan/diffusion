@@ -1,5 +1,7 @@
 # Diffusion Models in JAX
 
+![Denoising Process](examples/minimal.gif)
+
 A modular implementation of diffusion models using JAX, focusing on score-based generative modeling and building towards implementing various diffusion papers.
 
 ## Overview
